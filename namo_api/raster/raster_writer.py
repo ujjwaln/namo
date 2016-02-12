@@ -8,6 +8,10 @@ from namo_app.db.spref import SPREFS
 from namo_app import logger
 
 
+"""
+    methods for writing objects inheriting from RasterBase or Datagranule object to the database
+"""
+
 def get_srs(srid):
     for spref in SPREFS:
         if spref.epsg == srid:

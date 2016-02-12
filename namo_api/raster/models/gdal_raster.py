@@ -9,6 +9,11 @@ from namo_app.utils import check_zip
 
 class GDALRaster (RasterBase):
 
+    """
+        Represents a GDAL readable raster dataset.
+        Inherits from RasterBase and implements get_data
+    """
+
     def __init__(self, dataset_name, srid, bottom_up_data=False):
         dataset_name = check_zip(dataset_name)
         ds = gdal.Open(dataset_name, GA_ReadOnly)

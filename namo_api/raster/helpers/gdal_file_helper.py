@@ -6,6 +6,7 @@ import re
 from namo_app.utils import check_zip
 from namo_app.helpers.nc_file_helper import nc_get_1d_vars_as_list
 
+# Utility methods for GDAL compatible raster datasets
 
 def _parseTime(strTime, fmt="UTC"):
     if fmt == "UTC":

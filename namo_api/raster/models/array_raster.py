@@ -6,6 +6,13 @@ from namo_app.raster.helpers.conversion_helper import gdal2numpy
 
 
 class ArrayRaster(RasterBase):
+
+    """
+        Represents a numpy or array raster.
+        Inherits from RasterBase and implements get_data
+        also implements set_data_with_xy which creates grid/raster from list of x,y data points
+    """
+
     def __init__(self, data_array, size, ul, scale, skew, srid, gdal_datatype, nodata_value):
         self.data = data_array
         self.dsname = "ARRAY"

@@ -9,8 +9,10 @@ from osgeo import ogr
 
 class RasterBase(object):
     """
-        Represents a raster object that can be instantiated
-        from memory and written to postgis
+        Base Class that provides functionality for
+        generating wkt tiles, vector representation and subsetting
+        tiles or vectors can be written to postgresql. RasterBase DOES NOT
+        implement get_data!
     """
     def __init__(self, size, ul, scale, skew, srid, gdal_datatype, nodata_value, nodata_range=None, bottom_up=False):
         #if pixel 0,0 is at ul, bottom_up = false. default

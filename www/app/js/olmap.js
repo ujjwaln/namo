@@ -3,7 +3,8 @@ angular.module("olmap", []).directive("olMap", ["$http", "$q",
 function($http, $q) {
     
     var map = null, baseUrl = "http://127.0.0.1:5000/api/";
-    
+
+    //display rastertile extents as polygons on the map
     function show_rastertiles(rastertiles) {
         var gj = {
               'type': 'FeatureCollection',
@@ -19,7 +20,7 @@ function($http, $q) {
         for (var i=0; i<rastertiles.length; i++) {
             var id = rastertiles[i]["id"];
             var rast = rastertiles[i]["rast"];
-            
+
             if (rast.hasOwnProperty("extent")) {
                 features.push({
                     'type': 'Feature',
@@ -59,6 +60,7 @@ function($http, $q) {
         vlayer.addFeatures(geojson_format.read(gj)); 
     }
 
+    //get data providers (MODIS, GFS, GTOPO30 etc)
     function get_provider(provider_name) {
         var url = baseUrl + "provider";
         var def = $q.defer();
@@ -79,7 +81,8 @@ function($http, $q) {
         });
         return def.promise;
     }
-    
+
+    //get what datagranules for a particular data provider are available
     function get_datagranules(provider) {
         var url = baseUrl + "datagranule";
         var def = $q.defer();
@@ -100,7 +103,8 @@ function($http, $q) {
         });
         return def.promise;
     }
-    
+
+    //for particular datagranule, get rastertiles
     function get_rastertiles(datagranule) {
         var url = baseUrl + "rastertile/" + datagranule.id;
         var def = $q.defer();
@@ -112,7 +116,8 @@ function($http, $q) {
         });
         return def.promise;
     }
-    
+
+    //instantiate the map
     function init_map(div_id, lon, lat, zoom) {
         map = new OpenLayers.Map(div_id, {
             div : div_id,
@@ -126,6 +131,8 @@ function($http, $q) {
             map.getProjectionObject()), zoom);
     }
 
+
+    //directive object, accepts center and zoom level of map (2-way bound)
     return {
         
         scope : {
@@ -142,7 +149,8 @@ function($http, $q) {
             } else {
                 console.error("offMap directive requires id to be specified");
             }
-            
+
+            //initialize map with GFS datagranules
             get_provider("GFS").then(function(providers) {
                 get_datagranules(providers[0]).then(function(granules) {
                    get_rastertiles(granules[0]).then(function(rastertiles) {

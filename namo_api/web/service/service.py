@@ -15,6 +15,13 @@ from namo_app.web.service import crossdomain
 from namo_app.db.models import Mask, RasterTile, DataGranule, DataFormat
 
 
+"""
+    Flask application for creating REST API, using Flask-Restless
+    /layers end point returns the names of all tables that are saved in postgresql
+    /api/rastertile/datagranule_id returns rasters dumped into geosjon polygons
+    note /api endpoint returns datagranule via flask_restless
+"""
+
 class GeomvalType(CompositeType):
     typemap = {'geom': geoalchemy2.Geometry('POLYGON'), 'val': Float}
 
@@ -97,6 +104,7 @@ def post_get_single(result=None, search_params=None, **kw):
     return json_result
 
 
+#add cross domain headers
 def add_cors_headers(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Credentials'] = 'true'
@@ -115,6 +123,8 @@ app.json_encoder = GeoJSONEncoder
 db = flask.ext.sqlalchemy.SQLAlchemy(app)
 engine = create_engine(config.sqa_connection_string())
 insp = reflection.Inspector.from_engine(engine)
+
+#discover table names in public schema using flask restless inspector
 table_names = insp.get_table_names()
 
 
