@@ -13,7 +13,7 @@ class ArrayRaster(RasterBase):
         also implements set_data_with_xy which creates grid/raster from list of x,y data points
     """
 
-    def __init__(self, data_array, size, ul, scale, skew, srid, gdal_datatype, nodata_value):
+    def __init__(self, data_array, size, ul, scale, skew, srid, gdobjecal_datatype, nodata_value):
         self.data = data_array
         self.dsname = "ARRAY"
         super(ArrayRaster, self).__init__(size, ul, scale, skew, srid, gdal_datatype, nodata_value)
