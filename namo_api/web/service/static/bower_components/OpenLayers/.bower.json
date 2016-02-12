@@ -1,0 +1,14 @@
+{
+  "name": "OpenLayers",
+  "_cacheHeaders": {
+    "ETag": "\"6a84b0e1bcfb3e6016f22ea19f00673f\"",
+    "Last-Modified": "Fri, 15 Aug 2014 12:14:50 GMT",
+    "Content-Length": "10620928",
+    "Content-Type": "application/octet-stream",
+    "Content-Disposition": "attachment; filename=OpenLayers-2.13.1.tar.gz"
+  },
+  "_release": "e-tag:6a84b0e1b",
+  "_source": "http://github.com/openlayers/openlayers/releases/download/release-2.13.1/OpenLayers-2.13.1.tar.gz",
+  "_target": "*",
+  "_originalSource": "http://github.com/openlayers/openlayers/releases/download/release-2.13.1/OpenLayers-2.13.1.tar.gz"
+}

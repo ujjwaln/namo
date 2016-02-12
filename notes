@@ -1,0 +1,5 @@
+added headers["Access-Control-Allow-Origin"] = "*" to featureserver/web_request/handlers.py line 161
+
+added  if feature.srs:
+                self.crs = feature.srs
+in vectorformats/formats/geojson.py
