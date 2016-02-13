@@ -4,6 +4,7 @@ namo project consists of namo_api and www folders.
 featureserver is not being user now, it is a python implementation for creating WFS services
 
 namo_api has python implementation for ingesting some weather and satellite datasets. in particular, see
+
 1. ingest/gfs.py :Ingests Global Forecast Model weather predictions
 2. ingest/gtopo.py: ingests GTOPO30 digital elevation model
 3. ingest/modis_ndvi.py: ingests MODIS NDVI data
